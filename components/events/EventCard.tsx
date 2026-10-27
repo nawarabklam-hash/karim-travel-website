@@ -20,7 +20,7 @@ export default function EventCard({ event, locale, labels }: Props) {
 
   return (
     <article>
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-snow">
+      <div className="relative aspect-4/5 overflow-hidden rounded-2xl bg-snow">
         <Image
           src={event.image}
           alt={event.title[locale]}
@@ -28,7 +28,7 @@ export default function EventCard({ event, locale, labels }: Props) {
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover"
         />
-        <span className="absolute start-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-medium text-navy shadow-sm">
+        <span className="absolute inset-s-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-medium text-navy shadow-sm">
           <TypeIcon aria-hidden="true" className="size-3.5 shrink-0" />
           {type.label[locale]}
         </span>
@@ -36,7 +36,7 @@ export default function EventCard({ event, locale, labels }: Props) {
 
       {/* Negative margin is a % of the card width: the image is 1.25× its width tall,
           so -27% covers roughly the last 22% of the photo. */}
-      <div className="relative z-10 mx-3 -mt-[27%] rounded-xl bg-navy p-5 shadow-md shadow-navy/20">
+      <div className="relative z-10 mx-3 mt-[-27%] rounded-xl bg-navy p-5 shadow-md shadow-navy/20">
         <h3 className="truncate text-lg font-semibold text-white">
           {event.title[locale]}
         </h3>
