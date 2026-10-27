@@ -1,0 +1,223 @@
+{
+  "site": {
+    "name": "Karim",
+    "tagline": "Trips to Russia since 2018"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "about": "About us",
+    "events": "Events",
+    "info": "Travel info",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "languageSwitcher": {
+    "label": "العربية",
+    "ariaLabel": "Switch to Arabic"
+  },
+  "whatsapp": {
+    "floatLabel": "Chat with us on WhatsApp",
+    "defaultMessage": "Hello, I'd like to ask about a trip to Russia."
+  },
+  "footer": {
+    "quickLinks": "Quick links",
+    "contact": "Get in touch",
+    "rights": "All rights reserved.",
+    "legal": "Legal name: {name} (individual entrepreneur) · INN: {inn}",
+    "whatsapp": "WhatsApp",
+    "email": "Email"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "Sorry, the page you're looking for doesn't exist or has moved.",
+    "backHome": "Back to home"
+  },
+  "home": {
+    "hero": {
+      "titleLine1": "Unforgettable travel moments",
+      "titleLine2": "in Russia",
+      "subtitle": "Moscow, Saint Petersburg, Sochi and Murmansk: we plan every detail of your trip so you can simply enjoy it.",
+      "ctaWhatsapp": "Plan your trip on WhatsApp",
+      "ctaEvents": "Browse events",
+      "trust": {
+        "office": "Office in the Gulf",
+        "since": "Since 2018",
+        "team": "Arabic-speaking team"
+      }
+    },
+    "trips": {
+      "eyebrow": "Tour programs",
+      "title": "Hand-picked trips for your next journey",
+      "subtitle": "Complete programs with hotels, transfers and tours included, so all you have to do is enjoy.",
+      "seeMore": "See more"
+    },
+    "services": {
+      "eyebrow": "Our services",
+      "whatsappMessage": "Hello, I would like to ask about your {service} service.",
+      "cardLabel": "Ask about {service} on WhatsApp",
+      "tagline": "Tap any service and we will reply on WhatsApp.",
+      "ctaTitle": "Travel today!",
+      "ctaText": "Message us now and we will plan your whole trip.",
+      "ctaButton": "Chat with us on WhatsApp",
+      "ctaMessage": "Hello, I would like to plan a trip to Russia."
+    },
+    "destinations": {
+      "eyebrow": "Destinations",
+      "title": "Russia’s finest cities are waiting for you",
+      "subtitle": "From the capital to the Black Sea and the Arctic, pick your destination and we will plan the trip.",
+      "cardLabel": "Ask about a trip to {city} on WhatsApp",
+      "whatsappMessage": "Hello, I would like to ask about a trip to {city}."
+    }
+  },
+  "trip": {
+    "backToTrips": "All tour programs",
+    "gallery": "Trip photos",
+    "accommodation": "Accommodation",
+    "included": "Included services",
+    "extras": "Extra services",
+    "stars": "{count}-star hotel",
+    "bookTitle": "Book this trip",
+    "bookText": "Message us on WhatsApp for prices and available dates.",
+    "cta": "Book on WhatsApp",
+    "whatsappMessage": "Hello, I would like to ask about the \"{trip}\" trip."
+  },
+  "event": {
+    "duration": "Duration",
+    "distance": "Distance from {city} centre"
+  },
+  "eventsPage": {
+    "eyebrow": "Events",
+    "title": "Unforgettable experiences in Russia",
+    "subtitle": "Adventures, sightseeing and family activities, booked for you as part of your trip. Pick a type and book on WhatsApp.",
+    "filterLabel": "Filter events by type",
+    "all": "All"
+  },
+  "infoPage": {
+    "eyebrow": "Travel info",
+    "title": "Before you travel to Russia",
+    "subtitle": "What you need to know about the climate, currency, payments and electricity, plus a guide to Moscow and the best things to do there.",
+    "factsTitle": "Quick facts",
+    "thingsTitle": "Things to do in Moscow",
+    "askUs": {
+      "title": "Have a question before you travel?",
+      "subtitle": "Our team will answer you directly on WhatsApp.",
+      "button": "Ask us on WhatsApp",
+      "message": "Hi, I have a question before traveling to Russia"
+    },
+    "numbersTitle": "Moscow in numbers",
+    "bannerAlt": "Moscow from above at sunset, with the Foreign Ministry tower"
+  },
+  "pages": {
+    "home": {
+      "title": "Home"
+    },
+    "about": {
+      "title": "About us"
+    },
+    "events": {
+      "title": "Events"
+    },
+    "contact": {
+      "title": "Contact"
+    }
+  },
+  "aboutPage": {
+    "eyebrow": "About us",
+    "title": "Your Arab companion in Russia",
+    "subtitle": "Since 2018",
+    "story": {
+      "label": "Our story",
+      "title": "We started with the 2018 World Cup",
+      "text": "We started in early 2018, as Russia hosted the FIFA World Cup. Since then we have been with Arab travelers from the first message to the trip home, taking care of every detail and tailoring our services to each traveler.",
+      "text2": "Our office is in Ajman, UAE, and we offer complete travel services across Russia: hotel bookings, car rental, tour programs, visas and study services."
+    },
+    "bento": {
+      "years": "Years of experience",
+      "yearsNote": "We started with the 2018 World Cup",
+      "services": "Services",
+      "destinations": "Destinations",
+      "activities": "Activities in Moscow",
+      "activitiesCta": "Browse activities"
+    }
+  },
+  "contactPage": {
+    "eyebrow": "Contact us",
+    "title": "Your trip to Russia starts with a message",
+    "subtitle": "An Arabic-speaking team replies and arranges every detail.",
+    "whatsappMessage": "Hi, I'd like to ask about a trip to Russia",
+    "officeUnit": "Office",
+    "info": {
+      "title": "Contact info",
+      "subtitle": "We reply in Arabic",
+      "whatsapp": "WhatsApp",
+      "phone": "Phone",
+      "email": "Email",
+      "office": "Office",
+      "copy": "Copy address",
+      "copied": "Copied",
+      "cta": "Start chat"
+    },
+    "form": {
+      "title": "Send us a message",
+      "name": "Name",
+      "phone": "WhatsApp number",
+      "countryCode": "Country code",
+      "otherCountry": "Other",
+      "otherCodePlaceholder": "+00",
+      "email": "Email",
+      "optional": "(optional)",
+      "message": "Your message",
+      "service": "Service",
+      "services": {
+        "visa": "Visa",
+        "hotel": "Hotel",
+        "tour": "Tour program",
+        "car": "Car",
+        "study": "Study"
+      },
+      "submit": "Send",
+      "sending": "Sending…",
+      "successTitle": "Your message has been sent",
+      "successCta": "For a faster reply, message us on WhatsApp",
+      "errorInvalid": "Please check your name, WhatsApp number (7–12 digits) and message.",
+      "errorSend": "Your message couldn't be sent. Please try again or message us on WhatsApp.",
+      "countries": {
+        "sa": "Saudi Arabia",
+        "ae": "UAE",
+        "kw": "Kuwait",
+        "qa": "Qatar",
+        "bh": "Bahrain",
+        "om": "Oman"
+      }
+    },
+    "heroAlt": "An airplane flying through a sunset sky"
+  },
+  "meta": {
+    "home": {
+      "title": "Travel to Russia — Tours & Travel Services",
+      "description": "We plan your trip to Russia: visas, hotels, tour programs and cars with a driver. Arabic-speaking team, experience since 2018. Message us on WhatsApp."
+    },
+    "about": {
+      "title": "About Us",
+      "description": "A licensed travel company specializing in trips to Russia since 2018, with an office in Ajman, UAE. An Arabic-speaking team with you from first message to return."
+    },
+    "events": {
+      "title": "Activities & Adventures in Moscow",
+      "description": "21+ activities in Moscow: husky sledding, snowmobiles, the circus, river cruises and hot air balloons. Pick your experience and book on WhatsApp."
+    },
+    "info": {
+      "title": "Know Before You Go to Russia",
+      "description": "Everything to know before traveling to Russia: climate, currency, payment and cards, electricity, plus a guide to Moscow and its best experiences."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "Contact us on WhatsApp, phone or email to plan your trip to Russia. Our office is in Amberjem Tower, Ajman, United Arab Emirates."
+    },
+    "notFound": {
+      "title": "Page not found"
+    },
+    "breadcrumbHome": "Home"
+  }
+}
