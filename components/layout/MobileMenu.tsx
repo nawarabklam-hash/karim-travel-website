@@ -69,9 +69,11 @@ export default function MobileMenu() {
               aria-modal="true"
               aria-label={t("nav.label")}
               inert={!open}
-              className={`fixed inset-y-0 start-0 z-[60] flex w-[80%] max-w-[360px] flex-col bg-navy p-5 shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none ${
+              className={`fixed inset-y-0 start-0 z-[60] flex w-[80%] max-w-[360px] flex-col bg-navy p-5 transition-transform duration-300 ease-out motion-reduce:transition-none ${
+                // The shadow only while open: closed, the panel waits just off the edge
+                // and its shadow would show as a gray strip on every page.
                 open
-                  ? "translate-x-0"
+                  ? "translate-x-0 shadow-2xl"
                   : "ltr:-translate-x-full rtl:translate-x-full"
               }`}
             >

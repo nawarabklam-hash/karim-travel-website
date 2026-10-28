@@ -173,7 +173,7 @@ export default async function AboutPage({
       <div className="py-8 font-plex sm:py-10">
         {/* 2) Our story */}
         <Section id="story">
-          <div className="grid items-start gap-12 lg:grid-cols-[5fr_7fr] lg:gap-14">
+          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[5fr_7fr] lg:gap-14">
             <div>
               <Reveal>
                 <p className="text-sm font-semibold text-red">
@@ -270,7 +270,7 @@ export default async function AboutPage({
           <div className={`${siteContainer} ${siteInset}`}>
             {/* One timeline, in reading order: eyebrow → title → subtitle →
                 features one by one → image → badges (then they float) */}
-            <Sequence className="grid items-center gap-12 lg:grid-cols-2">
+            <Sequence className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
               <div>
                 <StaggerItem
                   variant="fadeIn"
@@ -403,7 +403,8 @@ export default async function AboutPage({
           <div className={`${siteContainer} ${siteInset}`}>
             {/* One timeline: navy card → its contents → tabs → questions
                 (timings in faqSequence; the tabs and questions live in <Faq>) */}
-            <Sequence className="grid items-start gap-8 lg:grid-cols-[0.8fr_1.4fr]">
+            {/* grid-cols-1 = minmax(0, 1fr): the scrolling tab row must not widen the phone layout */}
+            <Sequence className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[0.8fr_1.4fr]">
               {/* Stretch the column so the card can stick while the questions scroll */}
               <div className="lg:self-stretch">
                 <StaggerItem
