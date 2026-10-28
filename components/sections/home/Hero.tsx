@@ -78,9 +78,9 @@ export default async function Hero() {
                 {t("subtitle")}
               </p>
 
-              {/* Mobile: compact buttons (44px tall), side by side when they fit, else
-                  stacked at their own width. From md up: unchanged. */}
-              <div className="mt-9 flex flex-wrap items-center justify-start gap-3 md:flex-nowrap md:gap-4">
+              {/* Mobile: compact buttons (44px tall), stacked at full width.
+                  From md up: side by side at their own width (unchanged). */}
+              <div className="mt-9 flex w-full flex-col items-stretch gap-3 md:w-auto md:flex-row md:items-center md:justify-start md:gap-4">
                 <WhatsAppLink
                   message={tw("defaultMessage")}
                   location="home_hero"
