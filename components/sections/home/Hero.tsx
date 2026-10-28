@@ -63,7 +63,8 @@ export default async function Hero() {
             <WordReveal
               as="h1"
               lines={[t("titleLine1"), t("titleLine2")]}
-              className="font-calligraphy text-[clamp(1.25rem,6vw,3.75rem)] leading-[1.5] font-bold text-white drop-shadow-sm sm:text-5xl lg:text-6xl ltr:text-[clamp(1.25rem,6vw,3.75rem)] ltr:whitespace-nowrap"
+              // Mobile: bigger, tighter title that may wrap (English too). From md up: unchanged.
+              className="font-calligraphy text-4xl leading-[1.2] font-bold text-white drop-shadow-sm md:text-5xl md:leading-[1.5] lg:text-6xl ltr:md:text-[clamp(1.25rem,6vw,3.75rem)] ltr:md:whitespace-nowrap"
             />
 
             {/* Subtitle, buttons and trust line fade in after the title */}
@@ -73,27 +74,29 @@ export default async function Hero() {
               delay={heroFollowDelay}
               className="flex w-full flex-col items-start"
             >
-              <p className="mt-5 max-w-lg text-lg leading-relaxed font-medium text-white sm:text-xl">
+              <p className="mt-5 max-w-lg text-sm leading-relaxed font-medium text-white md:text-xl">
                 {t("subtitle")}
               </p>
 
-              <div className="mt-9 flex w-full flex-col items-stretch justify-start gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
+              {/* Mobile: compact buttons (44px tall), side by side when they fit, else
+                  stacked at their own width. From md up: unchanged. */}
+              <div className="mt-9 flex flex-wrap items-center justify-start gap-3 md:flex-nowrap md:gap-4">
                 <WhatsAppLink
                   message={tw("defaultMessage")}
                   location="home_hero"
-                  className="inline-flex h-13 items-center justify-center gap-2 rounded-xl bg-white px-7 text-base font-medium text-red transition-colors duration-200 hover:bg-snow focus-visible:ring-4 focus-visible:ring-white/50 focus-visible:outline-none"
+                  className="inline-flex h-11 items-center justify-center gap-1.5 rounded-xl bg-white px-5 text-sm font-medium text-red transition-colors duration-200 hover:bg-snow focus-visible:ring-4 focus-visible:ring-white/50 focus-visible:outline-none md:h-13 md:gap-2 md:px-7 md:text-base"
                 >
-                  <WhatsAppIcon className="size-5 shrink-0" />
+                  <WhatsAppIcon className="size-4 shrink-0 md:size-5" />
                   {t("ctaWhatsapp")}
                 </WhatsAppLink>
                 <Link
                   href="/events"
-                  className="group inline-flex h-13 items-center justify-center gap-2 rounded-xl bg-navy px-7 text-base font-medium text-white transition-colors duration-200 hover:bg-[#123a78] focus-visible:ring-4 focus-visible:ring-white/50 focus-visible:outline-none"
+                  className="group inline-flex h-11 items-center justify-center gap-1.5 rounded-xl bg-navy px-5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#123a78] focus-visible:ring-4 focus-visible:ring-white/50 focus-visible:outline-none md:h-13 md:gap-2 md:px-7 md:text-base"
                 >
                   {t("ctaEvents")}
                   <ArrowRight
                     aria-hidden="true"
-                    className="size-5 shrink-0 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1"
+                    className="size-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1 md:size-5 rtl:rotate-180 rtl:group-hover:-translate-x-1"
                   />
                 </Link>
               </div>
