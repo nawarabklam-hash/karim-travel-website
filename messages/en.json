@@ -66,9 +66,7 @@
     "destinations": {
       "eyebrow": "Destinations",
       "title": "Russia’s finest cities are waiting for you",
-      "subtitle": "From the capital to the Black Sea and the Arctic, pick your destination and we will plan the trip.",
-      "cardLabel": "Ask about a trip to {city} on WhatsApp",
-      "whatsappMessage": "Hello, I would like to ask about a trip to {city}."
+      "subtitle": "From the capital to the Black Sea and the Arctic, pick your destination and we will plan the trip."
     }
   },
   "trip": {

@@ -3,7 +3,6 @@ import { MapPin } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import type { AppLocale } from "@/i18n/routing";
 import { destinations } from "@/content/destinations";
-import WhatsAppLink from "@/components/ui/WhatsAppLink";
 import Reveal from "@/components/motion/Reveal";
 import WordReveal from "@/components/motion/WordReveal";
 import Stagger from "@/components/motion/Stagger";
@@ -25,7 +24,8 @@ export default async function Destinations() {
     <section
       id="destinations"
       aria-labelledby="destinations-title"
-      className={`${siteGutter} scroll-mt-24 py-20 sm:py-24`}
+      // overflow-x-clip: the photos slide in from the sides without causing a sideways scroll
+      className={`${siteGutter} scroll-mt-24 overflow-x-clip py-20 sm:py-24`}
     >
       <div className={`${siteContainer} ${siteInset}`}>
         <p className="flex items-center gap-3 font-calligraphy text-xl text-red">
@@ -56,17 +56,14 @@ export default async function Destinations() {
             return (
               <StaggerItem
                 as="li"
-                variant="clipUp"
+                // Alternate edges (start / end) so the photos arrive from both sides —
+                // the same order fits the 3-column bento and the single mobile column.
+                variant={i % 2 === 0 ? "slideStart" : "slideEnd"}
                 key={d.slug}
                 className={BENTO[i] ?? ""}
               >
-                <WhatsAppLink
-                  message={t("whatsappMessage", { city: name })}
-                  location="home_destination"
-                  params={{ city: d.slug }}
-                  aria-label={t("cardLabel", { city: name })}
-                  className="group relative isolate flex aspect-[4/3] h-full flex-col justify-end overflow-hidden rounded-2xl bg-linear-to-br from-navy via-[#1f4f94] to-[#4a80c4] p-5 text-white shadow-sm transition-shadow duration-200 hover:shadow-xl hover:shadow-navy/20 focus-visible:ring-2 focus-visible:ring-red/50 focus-visible:outline-none md:aspect-auto"
-                >
+                {/* Display only (no link, no hover): booking goes through the floating WhatsApp button */}
+                <div className="relative isolate flex aspect-[4/3] h-full flex-col justify-end overflow-hidden rounded-2xl bg-linear-to-br from-navy via-[#1f4f94] to-[#4a80c4] p-5 text-white shadow-sm md:aspect-auto">
                   {d.image && (
                     <Image
                       src={d.image}
@@ -78,7 +75,7 @@ export default async function Destinations() {
                           : "(min-width: 768px) 33vw, 100vw"
                       }
                       style={{ objectPosition: d.imagePosition }}
-                      className="-z-20 object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
+                      className="-z-20 object-cover"
                     />
                   )}
                   <div
@@ -100,7 +97,7 @@ export default async function Destinations() {
                       {d.tagline[locale]}
                     </p>
                   </StaggerItem>
-                </WhatsAppLink>
+                </div>
               </StaggerItem>
             );
           })}
