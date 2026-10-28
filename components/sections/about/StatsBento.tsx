@@ -53,17 +53,17 @@ export default function StatsBento({
   return (
     <Stagger className="grid gap-3 font-readex lg:grid-cols-3 lg:grid-rows-[auto_auto]">
       {/* 1) Experience — tall navy card */}
-      <StaggerItem className="relative isolate flex min-h-80 flex-col justify-between overflow-hidden rounded-3xl bg-navy p-8 text-white lg:row-span-2">
+      <StaggerItem className="relative isolate flex min-h-64 flex-col justify-between overflow-hidden rounded-3xl bg-navy p-6 text-white md:min-h-80 md:p-8 lg:row-span-2">
         <span
           aria-hidden="true"
           dir="ltr"
-          className="pointer-events-none absolute -end-4 -bottom-12 -z-10 text-[12rem] leading-none font-semibold text-white/5 select-none"
+          className="pointer-events-none absolute -end-4 -bottom-12 -z-10 text-[8rem] leading-none font-semibold text-white/5 select-none md:text-[12rem]"
         >
           {years}
         </span>
         <Trophy aria-hidden="true" className="size-10 text-amber-400" />
         <div>
-          <p className="text-7xl font-semibold">
+          <p className="text-5xl font-semibold md:text-7xl">
             <CountUp value={years} prefix="+" prefixClassName="text-red-300" />
           </p>
           <p className="mt-3 text-xl font-semibold">{labels.years}</p>
@@ -72,9 +72,9 @@ export default function StatsBento({
       </StaggerItem>
 
       {/* 2) Services */}
-      <StaggerItem className="flex flex-col justify-between gap-6 rounded-3xl bg-snow p-8">
+      <StaggerItem className="flex flex-col justify-between gap-6 rounded-3xl bg-snow p-6 md:p-8">
         <div>
-          <p className="text-6xl font-semibold text-navy">
+          <p className="text-4xl font-semibold text-navy md:text-6xl">
             <CountUp value={services.length} />
           </p>
           <p className="mt-2 text-lg font-semibold text-navy">
@@ -99,9 +99,9 @@ export default function StatsBento({
       </StaggerItem>
 
       {/* 3) Destinations */}
-      <StaggerItem className="flex flex-col justify-between gap-6 rounded-3xl bg-snow p-8">
+      <StaggerItem className="flex flex-col justify-between gap-6 rounded-3xl bg-snow p-6 md:p-8">
         <div>
-          <p className="text-6xl font-semibold text-navy">
+          <p className="text-4xl font-semibold text-navy md:text-6xl">
             <CountUp value={cities.length} />
           </p>
           <p className="mt-2 text-lg font-semibold text-navy">
@@ -121,9 +121,9 @@ export default function StatsBento({
       </StaggerItem>
 
       {/* 4) Activities — wide red card */}
-      <StaggerItem className="flex flex-col gap-6 rounded-3xl bg-red p-8 text-white sm:flex-row sm:items-center sm:justify-between lg:col-span-2">
+      <StaggerItem className="flex flex-col gap-6 rounded-3xl bg-red p-6 text-white sm:flex-row sm:items-center sm:justify-between md:p-8 lg:col-span-2">
         <div className="flex items-center gap-5">
-          <p className="text-6xl font-semibold">
+          <p className="text-4xl font-semibold md:text-6xl">
             <CountUp value={activities} />
           </p>
           <p className="text-lg font-semibold">{labels.activities}</p>
