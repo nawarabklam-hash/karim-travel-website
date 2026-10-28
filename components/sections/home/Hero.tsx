@@ -69,7 +69,7 @@ export default async function Hero() {
 
             {/* Subtitle, buttons and trust line fade in after the title */}
             <Reveal
-              variant="fadeIn"
+              variant="liftIn"
               trigger="mount"
               delay={heroFollowDelay}
               className="flex w-full flex-col items-start"

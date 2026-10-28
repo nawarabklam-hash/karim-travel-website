@@ -9,22 +9,18 @@ import { isSeen, markSeen, SEEN_ATTR } from "@/lib/motion/seen";
 const SEEN_AFTER_MS = 1500;
 
 /**
- * Starts loading the animation features once the browser is idle (or after a
- * short wait), so they never compete with the page's own hydration.
+ * The animation features are a separate chunk (not in the page's first JavaScript),
+ * but the download starts the moment this file runs, in parallel with hydration —
+ * the hero text is invisible until its animation starts, so waiting for an idle
+ * moment would delay the first visible text (LCP). (Measured: loading them on idle
+ * instead of right away made no difference beyond run-to-run noise.)
  */
-const idle = () =>
-  new Promise<void>((resolve) => {
-    if ("requestIdleCallback" in window) {
-      requestIdleCallback(() => resolve(), { timeout: 500 });
-    } else {
-      setTimeout(resolve, 100);
-    }
-  });
+const featuresPromise =
+  typeof window === "undefined"
+    ? null
+    : import("@/lib/motion/features").then((mod) => mod.default);
 
-const loadFeatures = () =>
-  idle()
-    .then(() => import("@/lib/motion/features"))
-    .then((mod) => mod.default);
+const loadFeatures = () => featuresPromise!;
 
 /**
  * Decides per page whether its entrance animations run: only the first visit in
@@ -52,9 +48,9 @@ function useMotionOncePerSession() {
 }
 
 /**
- * Wraps a page that uses components/motion (the five main pages; trip pages
- * don't animate). `strict` forbids the heavy `motion.*` components (use `m.*`),
- * and reducedMotion="user" turns movement off for visitors who ask for less motion.
+ * Wraps a page that uses components/motion (the five main pages and the trip
+ * pages). `strict` forbids the heavy `motion.*` components (use `m.*`), and
+ * reducedMotion="user" turns movement off for visitors who ask for less motion.
  */
 export default function MotionProvider({
   children,

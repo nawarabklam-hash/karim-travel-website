@@ -58,8 +58,11 @@ export default function MobileMenu() {
             <div
               aria-hidden="true"
               onClick={close}
-              className={`fixed inset-0 z-[55] bg-black/60 backdrop-blur-sm transition-opacity duration-300 motion-reduce:transition-none ${
-                open ? "opacity-100" : "pointer-events-none opacity-0"
+              className={`fixed inset-0 z-[55] bg-black/60 transition-opacity duration-300 motion-reduce:transition-none ${
+                // The blur layer exists only while the menu is open (no GPU layer on every page).
+                open
+                  ? "opacity-100 backdrop-blur-sm"
+                  : "pointer-events-none opacity-0"
               }`}
             />
 

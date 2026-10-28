@@ -10,7 +10,8 @@
     "images": "node scripts/generate-images.mjs",
     "images:webp": "node scripts/convert-to-webp.mjs",
     "prebuild": "node scripts/generate-images.mjs",
-    "preview:prod": "node scripts/preview-prod.mjs"
+    "preview:prod": "node scripts/preview-prod.mjs",
+    "fonts:woff2": "node scripts/subset-fonts.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.4.3",
@@ -21,8 +22,8 @@
     "next-intl": "^4.14.9",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "react-icons": "^5.7.0",
-    "resend": "^6.34.1"
+    "resend": "^6.34.1",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
@@ -31,6 +32,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
+    "subset-font": "^2.9.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
