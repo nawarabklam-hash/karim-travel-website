@@ -98,6 +98,9 @@ export default async function LocaleLayout({
       lang={locale}
       dir={directionOf(locale)}
       className={`${fontVariables} h-full scroll-smooth antialiased`}
+      // Smooth scrolling stays for in-page links, but a page change starts at the top at once
+      // (otherwise the new page "slides up" from the old scroll position).
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col font-sans">
