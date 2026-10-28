@@ -4,8 +4,7 @@ import { trips } from "@/content/trips";
 import TripCard from "@/components/trips/TripCard";
 import Reveal from "@/components/motion/Reveal";
 import WordReveal from "@/components/motion/WordReveal";
-import Stagger from "@/components/motion/Stagger";
-import StaggerItem from "@/components/motion/StaggerItem";
+import GridReveal from "@/components/motion/GridReveal";
 import {
   siteContainer,
   siteGutter,
@@ -40,21 +39,18 @@ export default async function Trips() {
           </p>
         </Reveal>
 
-        <Stagger
-          as="ul"
-          stagger={0.12}
-          className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
-        >
+        {/* Each card appears on its own as it scrolls in; cards that come into
+            view together appear one after another (any number of columns) */}
+        <GridReveal className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {trips.map((trip) => (
-            <StaggerItem as="li" key={trip.slug}>
-              <TripCard
-                trip={trip}
-                locale={locale}
-                seeMoreLabel={t("seeMore")}
-              />
-            </StaggerItem>
+            <TripCard
+              key={trip.slug}
+              trip={trip}
+              locale={locale}
+              seeMoreLabel={t("seeMore")}
+            />
           ))}
-        </Stagger>
+        </GridReveal>
       </div>
     </section>
   );

@@ -220,6 +220,21 @@ export const faqSequence = {
   switchGap: 0.06,
 } as const;
 
+/**
+ * A card in a grid that appears when it scrolls in (components/motion/GridReveal).
+ * `custom` is the wait in seconds: cards that enter the view together are queued
+ * `queueGap` apart, whatever the number of columns.
+ */
+export const queueGap = 0.18;
+export const queuedRise: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  show: (wait: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { ...baseTransition, delay: wait },
+  }),
+};
+
 /** A question that rises from blurred to sharp (child of a staggerContainer). */
 export const blurRiseItem: Variants = getVariant("blurRise", "ltr");
 
