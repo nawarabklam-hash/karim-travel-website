@@ -1,0 +1,32 @@
+name: Deploy to HardBrain VPS
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script_stop: true
+          command_timeout: 25m
+          script: |
+            set -euo pipefail
+            cd /opt/karim-travel
+            git fetch --depth 1 origin main
+            git reset --hard origin/main
+            npm ci
+            npm run build
+            systemctl restart karim-travel
+            systemctl is-active karim-travel
+            curl -sf http://127.0.0.1:3000/ >/dev/null
+            echo "Deploy OK $(date -Is)"
