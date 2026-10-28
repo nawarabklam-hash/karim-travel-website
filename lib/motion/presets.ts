@@ -235,6 +235,12 @@ export const queuedRise: Variants = {
   }),
 };
 
+/** Trip gallery: photos slide in from their own edge, big photo first. */
+export const galleryStagger = 0.12;
+export const galleryViewport = { once: true, amount: 0.2 } as const;
+/** How far (px) a gallery photo starts from its resting place (same as slideStart/slideEnd). */
+export const gallerySlide = 40;
+
 /** A question that rises from blurred to sharp (child of a staggerContainer). */
 export const blurRiseItem: Variants = getVariant("blurRise", "ltr");
 
