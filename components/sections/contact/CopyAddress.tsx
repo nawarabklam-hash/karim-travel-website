@@ -8,10 +8,13 @@ export default function CopyAddress({
   address,
   label,
   copiedLabel,
+  onDark = false,
 }: {
   address: string;
   label: string;
   copiedLabel: string;
+  /** White outline for use over a photo or a navy background. */
+  onDark?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -29,7 +32,11 @@ export default function CopyAddress({
     <button
       type="button"
       onClick={copy}
-      className="inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none"
+      className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-5 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none ${
+        onDark
+          ? "border-white/70 text-white hover:bg-white/15 focus-visible:ring-white focus-visible:ring-offset-navy"
+          : "border-navy text-navy hover:bg-snow focus-visible:ring-navy"
+      }`}
     >
       {copied ? (
         <Check aria-hidden="true" className="size-4" />

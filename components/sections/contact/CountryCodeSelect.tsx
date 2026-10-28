@@ -62,7 +62,7 @@ export default function CountryCodeSelect({
   };
 
   const option =
-    "flex w-full items-center gap-3 px-3 py-2.5 text-start text-sm text-navy hover:bg-snow focus-visible:bg-snow focus-visible:outline-none";
+    "flex min-h-11 w-full items-center gap-3 px-3 py-2.5 text-start text-sm text-navy hover:bg-snow focus-visible:bg-snow focus-visible:outline-none";
 
   return (
     <div ref={ref} className="relative shrink-0">
@@ -73,7 +73,7 @@ export default function CountryCodeSelect({
         aria-expanded={open}
         aria-controls={listId}
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-2 border-b border-navy/20 py-2.5 text-base text-navy focus:border-navy focus:outline-none"
+        className="flex min-h-11 items-center gap-2 border-b border-field py-2.5 text-base text-navy focus:border-navy focus:outline-none"
       >
         {current ? (
           <current.Flag aria-hidden="true" className={flagClass} />
@@ -92,7 +92,7 @@ export default function CountryCodeSelect({
           id={listId}
           role="listbox"
           aria-label={label}
-          className="absolute start-0 top-full z-20 mt-1 w-60 overflow-hidden rounded-xl border border-navy/10 bg-white py-1 shadow-lg shadow-navy/10"
+          className="absolute start-0 top-full z-20 mt-1 w-60 overflow-hidden rounded-xl border border-line bg-white py-1 shadow-lg shadow-navy/10"
         >
           {COUNTRIES.map((c) => {
             const selected = c.code === value;

@@ -6,6 +6,9 @@
   --color-navy: #0b2a5b;
   --color-red: #c8202f;
   --color-whatsapp: #25d366;
+  /* Contact page "clean white": card borders and form-field underlines */
+  --color-line: #d5dbe6;
+  --color-field: #b9c3d4;
 
   --font-sans: var(--font-din-next), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-din-next), ui-sans-serif, system-ui, sans-serif;

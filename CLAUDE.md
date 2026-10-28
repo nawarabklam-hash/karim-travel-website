@@ -77,6 +77,7 @@ White is the base of the identity; blue and red (from the Russian flag, softened
    - **No event detail pages** for now (matches the offer). Give every event a stable `slug` so detail pages can be added later without restructuring data.
 4. **Important info** (`/[locale]/info`) — climate, currency, payment methods, power outlets, city info. Organized and clear, no repeated content
 5. **Contact** (`/[locale]/contact`) — WhatsApp, email, office address (Ajman, UAE), contact form
+   - **Clean white, no hero photo** (no `KenBurns` here; the only photo is the Gulf skyline covering the office card, `public/images/contact/gulf-skyline.webp`, Dubai by Leon Macapagal, Unsplash License): centered header, two channel cards (WhatsApp navy, email white), then office card + form (form first on mobile). Colors via tokens `line` (card borders) and `field` (form underlines); red only on the eyebrow and the submit button, WhatsApp green only on the WhatsApp card icon. No phone-call card by client decision.
    - **No map** (no Google Maps embed or link) — the office card shows the address with a copy button. No Instagram anywhere.
 
 Global: floating WhatsApp button on every page; direct booking/contact buttons on services and events. A **bilingual 404 page** in the site's design.

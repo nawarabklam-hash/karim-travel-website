@@ -146,16 +146,19 @@
     "subtitle": "An Arabic-speaking team replies and arranges every detail.",
     "whatsappMessage": "Hi, I'd like to ask about a trip to Russia",
     "officeUnit": "Office",
-    "info": {
-      "title": "Contact info",
-      "subtitle": "We reply in Arabic",
-      "whatsapp": "WhatsApp",
-      "phone": "Phone",
-      "email": "Email",
-      "office": "Office",
+    "channels": {
+      "whatsapp": {
+        "title": "WhatsApp",
+        "text": "We reply in Arabic"
+      },
+      "email": {
+        "title": "Email"
+      }
+    },
+    "office": {
+      "title": "Our office in the Gulf",
       "copy": "Copy address",
-      "copied": "Copied",
-      "cta": "Start chat"
+      "copied": "Copied"
     },
     "form": {
       "title": "Send us a message",
@@ -189,8 +192,7 @@
         "bh": "Bahrain",
         "om": "Oman"
       }
-    },
-    "heroAlt": "An airplane flying through a sunset sky"
+    }
   },
   "meta": {
     "home": {

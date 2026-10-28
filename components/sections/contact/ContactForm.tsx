@@ -1,8 +1,9 @@
 "use client";
 
 import { startTransition, useActionState, useState } from "react";
-import { CircleCheck, LoaderCircle, Send } from "lucide-react";
-import { span as MSpan } from "motion/react-m";
+import { CircleAlert, CircleCheck, LoaderCircle, Send } from "lucide-react";
+import { div as MDiv, h2 as MH2, span as MSpan } from "motion/react-m";
+import { getVariant } from "@/lib/motion/presets";
 import { sendContact, type ContactState } from "@/app/actions/contact";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import WhatsAppLink from "@/components/ui/WhatsAppLink";
@@ -37,7 +38,7 @@ type Props = {
 
 /** Underline-style field: bottom border only, navy on focus. */
 const field =
-  "mt-1 w-full border-0 border-b border-navy/20 bg-transparent px-0 py-2.5 text-base text-navy placeholder:text-navy/30 focus:border-navy focus:ring-0 focus:outline-none";
+  "mt-1 w-full min-h-11 border-0 border-b border-field bg-transparent px-0 py-2.5 text-base text-navy placeholder:text-navy/40 focus:border-navy focus:ring-0 focus:outline-none";
 const label = "block text-sm font-medium text-navy/70";
 
 /** Contact form panel. Inputs are controlled so nothing is lost on an error. */
@@ -74,20 +75,39 @@ export default function ContactForm({ labels, services }: Props) {
   };
 
   if (state.status === "success") {
+    // Not tagged data-motion: this appears after a click, so it must animate even on a
+    // page already seen this session. Check icon pops, the text rises after it.
     return (
       <div className="flex min-h-[26rem] flex-col items-center justify-center p-8 text-center">
-        <CircleCheck aria-hidden="true" className="size-14 text-emerald-500" />
-        <h2 className="mt-4 text-2xl font-semibold text-navy">
-          {labels.successTitle}
-        </h2>
-        <WhatsAppLink
-          message={labels.whatsappMessage}
-          location="contact_form_success"
-          className="mt-5 inline-flex items-center gap-2.5 rounded-full bg-whatsapp px-6 py-3 text-sm font-semibold text-emerald-950 hover:brightness-95"
+        <MDiv
+          variants={getVariant("popIn", "ltr")}
+          initial="hidden"
+          animate="show"
         >
-          <WhatsAppIcon className="size-5" />
-          {labels.successCta}
-        </WhatsAppLink>
+          <CircleCheck aria-hidden="true" className="size-14 text-navy" />
+        </MDiv>
+        <MH2
+          variants={getVariant("fadeUp", "ltr", 0.2)}
+          initial="hidden"
+          animate="show"
+          className="mt-4 text-2xl font-semibold text-navy"
+        >
+          {labels.successTitle}
+        </MH2>
+        <MDiv
+          variants={getVariant("fadeUp", "ltr", 0.35)}
+          initial="hidden"
+          animate="show"
+        >
+          <WhatsAppLink
+            message={labels.whatsappMessage}
+            location="contact_form_success"
+            className="mt-5 inline-flex min-h-11 items-center gap-2.5 rounded-full bg-navy px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#123a78] focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 focus-visible:outline-none"
+          >
+            <WhatsAppIcon className="size-5" />
+            {labels.successCta}
+          </WhatsAppLink>
+        </MDiv>
       </div>
     );
   }
@@ -177,7 +197,7 @@ export default function ContactForm({ labels, services }: Props) {
           {services.map((s) => (
             <label
               key={s.id}
-              className="inline-flex cursor-pointer items-center gap-2 text-sm text-navy"
+              className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-sm text-navy"
             >
               <input
                 type="radio"
@@ -218,11 +238,11 @@ export default function ContactForm({ labels, services }: Props) {
         </label>
       </div>
 
-      <div className="mt-8 flex flex-col items-end gap-3">
+      <div className="mt-8 flex flex-col items-start gap-3">
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex items-center gap-2 rounded-xl bg-navy px-8 py-3.5 text-base font-semibold text-white transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-navy/40 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-70"
+          className="inline-flex h-12 items-center gap-2 rounded-xl bg-red px-8 text-base font-semibold text-white transition-colors hover:bg-[#b01c29] focus-visible:ring-2 focus-visible:ring-red focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-70"
         >
           {pending ? (
             <MSpan
@@ -239,7 +259,14 @@ export default function ContactForm({ labels, services }: Props) {
           {pending ? labels.sending : labels.submit}
         </button>
         {state.status === "error" && (
-          <p role="alert" className="text-sm font-medium text-red">
+          <p
+            role="alert"
+            className="flex items-start gap-2 text-sm font-semibold text-navy"
+          >
+            <CircleAlert
+              aria-hidden="true"
+              className="mt-0.5 size-4 shrink-0"
+            />
             {state.error === "invalid" ? labels.errorInvalid : labels.errorSend}
           </p>
         )}
