@@ -27,6 +27,13 @@ jobs:
             npm ci
             npm run build
             systemctl restart karim-travel
-            systemctl is-active karim-travel
-            curl -sf http://127.0.0.1:3000/ >/dev/null
-            echo "Deploy OK $(date -Is)"
+            for i in $(seq 1 20); do
+              if curl -sf http://127.0.0.1:3000/ar >/dev/null; then
+                echo "Deploy OK $(date -Is)"
+                exit 0
+              fi
+              sleep 2
+            done
+            echo "App did not respond after restart"
+            journalctl -u karim-travel -n 50 --no-pager
+            exit 1
