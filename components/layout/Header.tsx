@@ -11,17 +11,21 @@ export default async function Header() {
 
   return (
     <HeaderShell>
-      {/* The client's wordmark (public/logo/, made by scripts/make-logo.mjs) */}
-      <Link href="/" className="justify-self-start">
+      {/* The client's full emblem (public/logo/, made by scripts/make-logo.mjs). It is taller
+          than the bar and rises a few px above it; the bottom edge sits just inside the bar.
+          The header's top padding (pt-3 / sm:pt-4) keeps it fully on screen. */}
+      <Link
+        href="/"
+        className="relative h-full w-[75px] justify-self-start sm:w-[86px]"
+      >
         <Image
-          src="/logo/karim-wordmark.webp"
+          src="/logo/karim-emblem.webp"
           alt={t("site.name")}
-          width={400}
-          height={134}
+          width={800}
+          height={750}
           priority
-          // A 10 KB file shown at about 96px: no need to resize it again
-          unoptimized
-          className="h-7 w-auto sm:h-8"
+          sizes="86px"
+          className="absolute start-0 bottom-[3px] h-[70px] w-auto max-w-none sm:bottom-1 sm:h-20"
         />
       </Link>
 
