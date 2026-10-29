@@ -101,6 +101,7 @@ export default async function AboutPage({
   setRequestLocale(locale);
   const t = await getTranslations("aboutPage");
   const tm = await getTranslations("meta");
+  const ts = await getTranslations("site");
 
   // Counted from content/ so they stay in sync; years are computed, not typed.
   // (Static page: the year count updates on each rebuild.)
@@ -193,6 +194,15 @@ export default async function AboutPage({
                 <p className="mt-4 max-w-xl text-base leading-loose text-navy/70 sm:text-lg">
                   {t("story.text2")}
                 </p>
+                {/* The client's emblem */}
+                <Image
+                  src="/logo/karim-emblem.webp"
+                  alt={ts("name")}
+                  width={800}
+                  height={750}
+                  sizes="180px"
+                  className="mt-8 h-auto w-40 sm:w-[180px]"
+                />
               </Reveal>
             </div>
 

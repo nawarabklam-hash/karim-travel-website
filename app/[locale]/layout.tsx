@@ -64,8 +64,17 @@ function organizationJsonLd(locale: AppLocale) {
     "@id": `${siteUrl}/#organization`,
     name: brandName,
     url: `${siteUrl}/${locale}`,
-    logo: `${siteUrl}/icon.png`,
-    image: `${siteUrl}${ogImage(locale, "home")}`,
+    // Square 512px version of the emblem on navy (see scripts/generate-images.mjs)
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/icon.png`,
+      width: 512,
+      height: 512,
+    },
+    image: [
+      `${siteUrl}${ogImage(locale, "home")}`,
+      `${siteUrl}/logo/karim-emblem.png`,
+    ],
     telephone: contact.phone,
     email: contact.email,
     foundingDate: "2018",

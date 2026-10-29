@@ -5,8 +5,9 @@
 // unjoined letters, so share images got uneven gaps between words. sharp draws
 // text with Pango/HarfBuzz, which shapes and spaces Arabic correctly.
 //
-// Icons: if a real logo exists at public/logo/logo.svg (or logo.png) it is used;
-// otherwise a temporary navy square with the brand's first letter.
+// Icons and share images: the client's emblem (public/logo/karim-emblem.png, made by
+// scripts/make-logo.mjs) on a navy square, with a safe margin around it. If the emblem is
+// missing, a temporary navy square with the brand's first letter is used.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
@@ -29,7 +30,9 @@ const messages = {
   en: JSON.parse(readFileSync(join(root, "messages/en.json"), "utf8")),
 };
 const brand = messages.ar.site.name;
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.russia-4u.com").replace(/\/$/, "");
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.russia-4u.com"
+).replace(/\/$/, "");
 const host = siteUrl.replace(/^https?:\/\//, "");
 
 const escape = (s) =>
@@ -74,14 +77,31 @@ async function letterMark(size, radius) {
     .toBuffer();
 }
 
-/** The brand mark at a given size: the real logo if present, else the letter mark. */
-async function brandMark(size, radius) {
-  const logo = ["svg", "png"]
-    .map((ext) => join(root, `public/logo/logo.${ext}`))
-    .find(existsSync);
-  if (!logo) return letterMark(size, radius);
-  return sharp(logo)
-    .resize(size, size, { fit: "contain", background: "#FFFFFF" })
+/**
+ * The brand mark: the emblem centered on a navy square. `margin` is the free space around
+ * the emblem as a share of the square (0.14 = 14% on each side; app icons keep a wider one so
+ * nothing is cut by rounded or masked icon shapes). No black anywhere — the emblem is
+ * transparent and the square is navy.
+ */
+async function brandMark(size, radius, margin = 0.14) {
+  const logo = join(root, "public/logo/karim-emblem.png");
+  if (!existsSync(logo)) return letterMark(size, radius);
+  const inner = Math.round(size * (1 - margin * 2));
+  const emblem = await sharp(logo)
+    .resize(inner, inner, { fit: "inside", kernel: "lanczos3" })
+    .png()
+    .toBuffer({ resolveWithObject: true });
+  const bg = Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}"><rect width="${size}" height="${size}" rx="${radius}" fill="${NAVY}"/></svg>`,
+  );
+  return sharp(bg)
+    .composite([
+      {
+        input: emblem.data,
+        left: Math.round((size - emblem.info.width) / 2),
+        top: Math.round((size - emblem.info.height) / 2),
+      },
+    ])
     .png()
     .toBuffer();
 }
@@ -104,17 +124,23 @@ function pngToIco(png, size) {
 }
 
 async function icons() {
-  writeFileSync(join(root, "app/icon.png"), await brandMark(512, 0));
-  writeFileSync(join(root, "app/apple-icon.png"), await brandMark(180, 0));
-  writeFileSync(join(root, "app/favicon.ico"), pngToIco(await brandMark(32, 0), 32));
+  writeFileSync(join(root, "app/icon.png"), await brandMark(512, 0, 0.16));
+  writeFileSync(
+    join(root, "app/apple-icon.png"),
+    await brandMark(180, 0, 0.16),
+  );
+  writeFileSync(
+    join(root, "app/favicon.ico"),
+    pngToIco(await brandMark(32, 0, 0.04), 32),
+  );
 }
 
 /** 1200×630: brand at the top, big page title, navy bar with the domain. */
 async function shareImage(locale, title, file) {
   const rtl = locale === "ar";
   const pad = 80;
-  const mark = await brandMark(64, 14);
-  const name = await text(brand, { size: 40, color: NAVY });
+  const markSize = 112;
+  const mark = await brandMark(markSize, 20, 0.08);
   const heading = await text(title, {
     size: 66,
     color: NAVY,
@@ -126,7 +152,7 @@ async function shareImage(locale, title, file) {
   // Start side = right in Arabic, left in English.
   const x = (w) => (rtl ? W - pad - w : pad);
   const barH = 96;
-  const titleTop = Math.round((H - barH - 150 - heading.info.height) / 2 + 150);
+  const titleTop = Math.round((H - barH - 190 - heading.info.height) / 2 + 190);
 
   const bg = Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
@@ -135,13 +161,11 @@ async function shareImage(locale, title, file) {
       <rect y="${H - barH}" width="${W}" height="${barH}" fill="${NAVY}"/>
     </svg>`,
   );
-  const markX = x(64);
-  const nameX = rtl ? markX - 18 - name.info.width : markX + 64 + 18;
+  const markX = x(markSize);
 
   await sharp(bg)
     .composite([
-      { input: mark, left: markX, top: 60 },
-      { input: name.data, left: nameX, top: 60 + Math.round((64 - name.info.height) / 2) },
+      { input: mark, left: markX, top: 44 },
       { input: heading.data, left: x(heading.info.width), top: titleTop },
       {
         input: domain.data,
@@ -158,7 +182,11 @@ async function shareImages() {
     const dir = join(root, "public/og", locale);
     mkdirSync(dir, { recursive: true });
     for (const page of ["home", "about", "events", "info", "contact"]) {
-      await shareImage(locale, messages[locale].meta[page].title, join(dir, `${page}.png`));
+      await shareImage(
+        locale,
+        messages[locale].meta[page].title,
+        join(dir, `${page}.png`),
+      );
     }
   }
 }

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { navItems } from "./navItems";
@@ -10,12 +11,18 @@ export default async function Header() {
 
   return (
     <HeaderShell>
-      {/* TODO: replace with the client's logo from public/logo/ */}
-      <Link
-        href="/"
-        className="justify-self-start text-lg font-bold text-white sm:text-xl"
-      >
-        {t("site.name")}
+      {/* The client's wordmark (public/logo/, made by scripts/make-logo.mjs) */}
+      <Link href="/" className="justify-self-start">
+        <Image
+          src="/logo/karim-wordmark.webp"
+          alt={t("site.name")}
+          width={400}
+          height={134}
+          priority
+          // A 10 KB file shown at about 96px: no need to resize it again
+          unoptimized
+          className="h-7 w-auto sm:h-8"
+        />
       </Link>
 
       <nav aria-label={t("nav.label")} className="hidden md:block">

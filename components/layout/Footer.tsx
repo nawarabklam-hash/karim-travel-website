@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { contact, shortAddress } from "@/content/contact";
@@ -20,7 +21,14 @@ export default async function Footer() {
     <footer className="bg-navy text-white">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-3">
         <div>
-          <p className="text-lg font-bold">{t("site.name")}</p>
+          <Image
+            src="/logo/karim-emblem.webp"
+            alt={t("site.name")}
+            width={800}
+            height={750}
+            sizes="120px"
+            className="h-auto w-[120px]"
+          />
           <p className="mt-2 text-sm text-white/70">{t("site.tagline")}</p>
           <p className="mt-2 text-sm text-white/70">{shortAddress(locale)}</p>
         </div>
