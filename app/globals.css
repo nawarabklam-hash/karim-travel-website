@@ -13,10 +13,9 @@
   --font-sans: var(--font-din-next), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-din-next), ui-sans-serif, system-ui, sans-serif;
   --font-calligraphy: var(--font-ruqaa), serif;
-  --font-plex: var(--font-ibm-plex), ui-sans-serif, system-ui, sans-serif;
-  --font-readex: var(--font-readex-face), ui-sans-serif, system-ui, sans-serif;
-  --font-tajawal:
-    var(--font-tajawal-face), ui-sans-serif, system-ui, sans-serif;
+  --font-plex: var(--font-text-face), ui-sans-serif, system-ui, sans-serif;
+  --font-readex: var(--font-stats-face), ui-sans-serif, system-ui, sans-serif;
+  --font-tajawal: var(--font-note-face), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {

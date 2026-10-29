@@ -158,7 +158,7 @@ export default async function AboutPage({
             />
             <Reveal
               as="p"
-              variant="fadeIn"
+              variant="liftIn"
               trigger="mount"
               delay={heroFollowDelay}
               className="mt-3 max-w-2xl font-plex text-base text-white/90 sm:text-lg"

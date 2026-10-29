@@ -4,6 +4,7 @@ import { span as MSpan } from "motion/react-m";
 import {
   easeOut,
   viewport,
+  wordHeroHidden,
   wordHidden,
   wordShow,
   wordStagger,
@@ -68,7 +69,7 @@ export default function WordReveal({
               },
             }
           : {
-              initial: wordHidden,
+              initial: wordHeroHidden,
               animate: wordShow,
               transition: { duration: 0.7, ease: easeOut, delay: wordDelay },
             };

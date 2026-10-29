@@ -100,7 +100,7 @@ export default async function EventsPage({
           />
           <Reveal
             as="p"
-            variant="fadeIn"
+            variant="liftIn"
             trigger="mount"
             delay={heroFollowDelay}
             className="mt-3 max-w-2xl text-base text-navy/70 sm:text-lg"
@@ -110,7 +110,7 @@ export default async function EventsPage({
 
           {/* Filter by type — scrolls sideways on mobile, wraps on larger screens */}
           <Reveal
-            variant="fadeUp"
+            variant="liftIn"
             trigger="mount"
             delay={heroFollowDelay + 0.1}
             className="mt-10"
@@ -160,6 +160,7 @@ export default async function EventsPage({
                   <EventCard
                     event={event}
                     locale={locale}
+                    priority={i === 0}
                     labels={{
                       duration: te("duration"),
                       distance: te("distance", { city: cityName(event.city) }),

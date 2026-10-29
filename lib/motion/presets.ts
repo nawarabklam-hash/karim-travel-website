@@ -53,7 +53,8 @@ export type VariantName =
   | "blurIn"
   | "blurRise"
   | "riseIn"
-  | "nudgeUp";
+  | "nudgeUp"
+  | "liftIn";
 
 /**
  * Directions are logical: "start" is the right side in Arabic (RTL) and the left
@@ -133,6 +134,10 @@ function baseVariant(
         { duration: 0.5, ease: easeOut },
         delay,
       );
+    // Hero text below the title: moves only (never transparent), so it is visible
+    // from the first paint and just settles into place.
+    case "liftIn":
+      return make({ y: 14 }, { y: 0 }, { duration: 0.6, ease: easeOut }, delay);
     // A small step up (chips, tabs).
     case "nudgeUp":
       return make(
@@ -257,11 +262,21 @@ export const kenBurns = {
   transition: { duration: 6, ease: easeOut } as Transition,
 };
 
-/** One word of a hero title: rises out of a mask, from blurred to sharp. */
-export const wordHidden = { opacity: 0, y: "100%", filter: "blur(6px)" };
-export const wordShow = { opacity: 1, y: "0%", filter: "blur(0px)" };
+/**
+ * One word of a title: rises out of its mask (transform only — no opacity, no blur,
+ * so the text is never invisible). Titles below the fold start fully below the mask.
+ */
+export const wordHidden = { y: "100%" };
+export const wordShow = { y: "0%" };
+/**
+ * Titles at the top of a page (trigger "mount") are in the server HTML and painted
+ * with the very first frame, so they start only a little below their final spot:
+ * still readable at first paint (this is what the browser counts as the page's main
+ * content), then they settle. Use "100%" to hide them until the animation starts.
+ */
+export const wordHeroHidden = { y: "25%" };
 export const wordStagger = 0.06;
-/** Delay before the subtitle/buttons fade in after the title. */
+/** Delay before the subtitle/buttons rise after the title. */
 export const heroFollowDelay = 0.4;
 
 /** Small red underline under a stat: grows from the center (transform only). */

@@ -84,7 +84,7 @@ export default async function ContactPage({
           {/* 1) Header: no image, no colored block */}
           <header className="text-center">
             <Reveal
-              variant="fadeUp"
+              variant="liftIn"
               trigger="mount"
               delay={heroFollowDelay}
               className="flex justify-center"
@@ -104,7 +104,7 @@ export default async function ContactPage({
             />
             <Reveal
               as="p"
-              variant="fadeUp"
+              variant="liftIn"
               trigger="mount"
               delay={heroFollowDelay}
               className="mx-auto mt-3 max-w-xl text-base text-navy/70 sm:text-lg"

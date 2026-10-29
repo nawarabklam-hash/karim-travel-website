@@ -37,9 +37,17 @@ type Props = {
 export default function HeroSlider({ slides, className, children }: Props) {
   const [index, setIndex] = useState(0);
   const [previous, setPrevious] = useState<number | null>(null);
-  const [seen, setSeen] = useState<Set<number>>(() => new Set([0, 1]));
+  // Only the first photo is rendered at first; the second one is added a moment
+  // later (below), so it doesn't download at the same time as the visible photo.
+  const [seen, setSeen] = useState<Set<number>>(() => new Set([0]));
   const [hovered, setHovered] = useState(false);
   const [tabHidden, setTabHidden] = useState(false);
+
+  useEffect(() => {
+    if (slides.length < 2) return;
+    const id = setTimeout(() => setSeen((s) => new Set(s).add(1)), 2000);
+    return () => clearTimeout(id);
+  }, [slides.length]);
 
   useEffect(() => {
     const onVisibility = () => setTabHidden(document.hidden);

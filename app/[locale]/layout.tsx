@@ -2,7 +2,11 @@ import type { Metadata, Viewport } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import {
+  getMessages,
+  getTranslations,
+  setRequestLocale,
+} from "next-intl/server";
 import { directionOf, routing, type AppLocale } from "@/i18n/routing";
 import { brandName, isProduction, siteUrl } from "@/lib/site";
 import { ogImage, ogLocale } from "@/lib/seo";
@@ -92,6 +96,11 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  // Only what client components read is sent to the browser (header + language
+  // switcher); everything else is rendered on the server. Add a namespace here if
+  // a new client component calls useTranslations.
+  const { nav, site, languageSwitcher } = await getMessages();
+  const clientMessages = { nav, site, languageSwitcher };
 
   return (
     <html
@@ -112,7 +121,7 @@ export default async function LocaleLayout({
         <script dangerouslySetInnerHTML={{ __html: seenScript }} />
         <JsonLd data={organizationJsonLd(locale)} />
         <JsonLd data={websiteJsonLd(locale)} />
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages}>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

@@ -8,13 +8,20 @@ type Props = {
   locale: AppLocale;
   /** Screen-reader labels for the meta line. */
   labels: { duration: string; distance: string };
+  /** The first card is the page's main image: load it right away instead of lazily. */
+  priority?: boolean;
 };
 
 /**
  * Display-only event card: tall photo with a navy info card floating over its
  * bottom edge. No link and no hover — booking goes through the floating WhatsApp button.
  */
-export default function EventCard({ event, locale, labels }: Props) {
+export default function EventCard({
+  event,
+  locale,
+  labels,
+  priority = false,
+}: Props) {
   const type = eventTypes.find((t) => t.id === event.type)!;
   const TypeIcon = type.icon;
 
@@ -25,6 +32,7 @@ export default function EventCard({ event, locale, labels }: Props) {
           src={event.image}
           alt={event.title[locale]}
           fill
+          priority={priority}
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover"
         />
