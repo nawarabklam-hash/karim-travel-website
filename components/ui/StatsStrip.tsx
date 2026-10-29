@@ -29,13 +29,14 @@ export default function StatsStrip({ stats }: { stats: Stat[] }) {
         <StaggerItem
           as="li"
           key={stat.label}
-          className={`border-navy/10 px-4 py-8 sm:px-6 sm:py-10 ${i % 2 ? "border-s" : ""} ${i >= 2 ? "border-t lg:border-t-0" : ""} ${i === 2 ? "lg:border-s" : ""}`}
+          className={`border-navy/10 px-4 py-8 max-sm:px-2 sm:px-6 sm:py-10 ${i % 2 ? "border-s" : ""} ${i >= 2 ? "border-t lg:border-t-0" : ""} ${i === 2 ? "lg:border-s" : ""}`}
         >
           <p className="flex items-baseline justify-center gap-1.5 text-4xl font-semibold text-navy md:text-5xl">
             <CountUp
               value={stat.value}
               from={stat.startFrom}
               prefix={stat.prefix}
+              className="max-md:whitespace-nowrap"
               prefixClassName="text-red"
               decimals={stat.decimals}
               grouping={stat.grouping}
